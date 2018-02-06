@@ -8,60 +8,78 @@ import sys
 import urllib.request
 
 
-# Main program
-def main(feedUrl):
-    # Init pages, nextPage, lastPage.
-    nextPage = ""  # Link to next page of the feed.
+def main(feed_url):
+    """
+    Main program.
+    :param feed_url: URL to the feed.
+    :return: none.
+    """
+    # Init pages, next_page.
     pages = []  # List of the feeds pages.
-    nextPage = feedUrl  # Next page of the feed.
-    lastPage = feedUrl  # Last page of the feed.
+    next_page = feed_url  # Next page of the feed.
 
-    first = download(nextPage)
+    first = download(next_page)
 
-    lastPage = getLastPage(first)
-    nextPage = getNextPage(first)
+    last_page = get_last_page(first)
+    next_page = get_next_page(first)
     pages.append(first)
 
-    lastPageProcessed = False
-    if (nextPage == ""):  # If no next page, skip loop.
-        lastPageProcessed = True
+    last_page_processed = False
+    if next_page == "":  # If no next page, skip loop.
+        last_page_processed = True
 
-    while not lastPageProcessed:
-        page = download(nextPage)
+    while not last_page_processed:
+        page = download(next_page)
         pages.append(page)
-        if (nextPage == lastPage):  # if recent page is the last page.
-            lastPageProcessed = True
-        nextPage = getNextPage(page)
+        if next_page == last_page:  # if recent page is the last page.
+            last_page_processed = True
+        next_page = get_next_page(page)
 
     for page in pages:
-        printLinks(page)
+        print_links(page)
 
 
-# Download a temporary Copy of a page of the feed.
-def download(nextPage):
-    request = urllib.request.urlopen(nextPage)
+def download(next_page):
+    """
+    Download a temporary copy of a page of the feed.
+    :param next_page: URL of the next page of the feed.
+    :return: Next page.
+    """
+    request = urllib.request.urlopen(next_page)
     return request.read().decode("utf-8")
 
 
-# Get the link to the last page of the feed.
-def getLastPage(page):
+def get_last_page(page):
+    """
+    Get the link to the last page of the feed.
+    :param page: Page to extract the URL from.
+    :return: URL of the last page of the feed.
+    """
     feed = feedparser.parse(page)
     for link in feed.feed.links:
-        if (link.rel == "last"):
+        if link.rel == "last":
             return link.href
 
 
-# Get the link to the next page of the feed.
-def getNextPage(page):
+def get_next_page(page):
+    """
+    Get the link to the next page of the feed.
+    :param page: Page to extract the URL from.
+    :return: URL of the next page of the feed.
+    """
     feed = feedparser.parse(page)
     for link in feed.feed.links:
-        if (link.rel == "next"):
+        if link.rel == "next":
             return link.href
     return ""
 
 
-# Print links to console.
-def printLinks(page):
+def print_links(page):
+    """
+    Print links to console.
+    :param page: Page to extract the links from.
+    :return: none.
+    """
     feed = feedparser.parse(page)
     # iterate over entries.
     for entry in feed.entries:
@@ -72,7 +90,7 @@ def printLinks(page):
 
 # Run the main program.
 feedUrl = ""
-if (len(sys.argv) > 1):
+if len(sys.argv) > 1:
     feedUrl = sys.argv[1]
 else:
     feedUrl = input("Please enter the feed url: ")
