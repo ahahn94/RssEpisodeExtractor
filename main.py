@@ -15,9 +15,8 @@ def main(feed_url):
     :return: none.
     """
     # Init pages, next_page.
-    pages = []  # List of the feeds pages.
+    pages: list = []  # List of the feeds pages.
     next_page = feed_url  # Next page of the feed.
-
     first = download(next_page)
 
     last_page = get_last_page(first)
