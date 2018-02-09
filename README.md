@@ -5,12 +5,16 @@ RssEpisodeExtractor needs the following dependencies:
 - Python 3
 - feedparser (python module)
 
+## Installation
+Just run `./install.sh` to install and `./remove.sh` to uninstall the program.
+#### Only linux is supported!
+
 ## Usage:
-Just run `python3 main.py link_to_feed` and the links will be printed to the cli.  
+Just run `rssepisodeextractor link_to_feed` and the links will be printed to the cli.  
 
-If you run `python3 main.py` you will be asked for your url.  
+If you run `rssepisodeextractor` you will be asked for your url.  
 
-If you want to download the files directly from the cli, run `python3 main.py yourfeedurl | xargs wget`. Be aware that this can take some time, depending on the number of episodes and the connection speed.
+If you want to download the files directly from the cli, run `rssepisodeextractor yourfeedurl | xargs wget`. Be aware that this can take some time, depending on the number of episodes and the connection speed.
 
 ## Tip:
 Run the code from the first example and paste the result into a download manager like JDownloader.
