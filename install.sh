@@ -1,3 +1,3 @@
-#!/bin/bash
-cp -r RssEpisodeExtractor /usr/share/
+#!/usr/bin/env bash
+python3 setup.py install
 cp rssepisodeextractor /usr/bin/

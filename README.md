@@ -3,6 +3,7 @@
 ## Dependencies
 RssEpisodeExtractor needs the following dependencies:
 - Python 3
+- setuptools
 - feedparser (python module)
 
 ## Installation
