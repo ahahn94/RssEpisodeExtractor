@@ -1,2 +1,4 @@
-#!/bin/bash
-python3 /usr/share/RssEpisodeExtractor/cli.py "$@"
+#!/usr/bin/env python3
+from reelib import cli
+
+cli
