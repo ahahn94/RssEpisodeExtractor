@@ -2,8 +2,8 @@
 # This program is published under the terms of the GNU GPL Version 2.
 # Copyright ahahn94 2018
 import urllib.request
-
 import feedparser
+import requests
 
 
 def download(next_page):
@@ -82,3 +82,13 @@ def get_links(page):
         for link in entry.enclosures:
             links.append(link.href)
     return links
+
+
+def get_redirect(link):
+    """
+    Get the url of the redirected link.
+    :param link: Link to follow.
+    :return: Redirected url.
+    """
+    response = requests.get(link)
+    return response.url
