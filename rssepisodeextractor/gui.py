@@ -7,10 +7,12 @@ import threading
 
 import gi
 
-from reelib import functions
-from reelib.functions import get_redirect
+from rssepisodeextractor import functions
+from rssepisodeextractor import help
+from rssepisodeextractor.functions import get_redirect
 
 gi.require_version("Gtk", "3.0")
+gi.require_version("Gio", "2.0")
 from gi.repository import Gtk, GObject
 
 
@@ -28,8 +30,8 @@ class GUI:
         # Create builder and load gui file.
         builder = Gtk.Builder()
         my_dir = os.path.dirname(os.path.abspath(__file__))
-        my_file = os.path.join(my_dir, "gui.glade")
-        builder.add_from_file(my_file)
+        gui_glade_path = os.path.join(my_dir, "gui.glade")
+        builder.add_from_file(gui_glade_path)
         go = builder.get_object
         # Bind gui elements to objects.
         self.window = go("window")
@@ -40,13 +42,17 @@ class GUI:
         self.image_done = go("image_done")
         self.textview_output = go("textview_output")
         self.switch_follow_links = go("switch_follow_links")
+        self.button_help = go("button_help")
         # Setup gui.
         self.label_status.set_text("Status: Ready")
         self.spinner_status.hide()
         self.window.set_title("RSS Episode Extractor")
+        icon_png_path = os.path.join(my_dir, 'icon.png')
+        self.window.set_icon_from_file(icon_png_path)
         # Connect slots.
         self.button_load.connect("clicked", self.button_load_clicked)
         self.entry_url.connect("activate", self.button_load_clicked)
+        self.button_help.connect("clicked", self.button_help_clicked)
         # Show gui.
         self.window.connect("delete-event", Gtk.main_quit)
         self.window.show()
@@ -70,6 +76,17 @@ class GUI:
         # Load pages.
         self.thread = PageWorker(self)
         self.thread.start()
+
+    def button_help_clicked(self, widget):
+        """
+        Run when button_help is clicked.
+        :param widget: button_help.
+        """
+
+        dialog = Gtk.MessageDialog(self.window, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, "Help")
+        dialog.format_secondary_text(help.get_help_gui())
+        dialog.run()
+        dialog.destroy()
 
     def pages_loaded_callback(self):
         """
