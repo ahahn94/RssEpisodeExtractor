@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=RssEpisodeExtractor
+Comment=Get a list of links to the episodes of a podcast.
+Exec=rssepisodeextractor.rssepisodeextractor-gtk
+GenericName=RssEpisodeExtractor
+Icon=${SNAP}/meta/gui/rssepisodeextractor.png
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Development;
+StartupWMClass=RssEpisodeExtractor
