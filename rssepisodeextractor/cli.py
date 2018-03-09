@@ -5,7 +5,8 @@
 
 import sys
 
-from reelib import functions
+from rssepisodeextractor import functions
+from rssepisodeextractor import help
 
 
 def main(feed_url, redirect):
@@ -31,11 +32,15 @@ def main(feed_url, redirect):
 feedUrl = ""
 redirect = False
 redirect_option_string = "--redirect"
-if len(sys.argv) > 1:
-    if (redirect_option_string in sys.argv):
-        redirect = True
-        sys.argv.remove(redirect_option_string)
-    feedUrl = sys.argv[1]
+help_option_string = "--help"
+if (help_option_string in sys.argv):
+    print(help.get_help_cli())
 else:
-    feedUrl = input("Please enter the feed url: ")
-main(feedUrl, redirect)
+    if len(sys.argv) > 1:
+        if (redirect_option_string in sys.argv):
+            redirect = True
+            sys.argv.remove(redirect_option_string)
+        feedUrl = sys.argv[1]
+    else:
+        feedUrl = input("Please enter the feed url: ")
+    main(feedUrl, redirect)

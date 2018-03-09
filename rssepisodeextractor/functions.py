@@ -47,7 +47,7 @@ def get_pages(feed_url):
     :param feed_url: URL to the feed.
     :return: List of the feeds pages.
     """
-    pages: list = []  # List of the feeds pages.
+    pages = []  # List of the feeds pages.
     next_page = feed_url  # Next page of the feed.
     first = download(next_page)
 

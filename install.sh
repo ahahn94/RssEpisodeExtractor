@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 python3 setup.py install
-cp rssepisodeextractor rssepisodeextractor-gtk /usr/bin/
+cp bin/rssepisodeextractor bin/rssepisodeextractor-gtk /usr/bin/
