@@ -1,3 +1,4 @@
+[![Snap Status](https://build.snapcraft.io/badge/ahahn94/RssEpisodeExtractor.svg)](https://build.snapcraft.io/user/ahahn94/RssEpisodeExtractor)
 # RssEpisodeExtractor
 
 ## Dependencies
@@ -7,9 +8,21 @@ RssEpisodeExtractor needs the following dependencies:
 - setuptools
 - feedparser (python module)
 
-## Installation
+## Manual Installation
 Just run `./install.sh` to install and `./remove.sh` to uninstall the program.
 #### Only linux is supported!
+
+## Installation via Snap
+RssEpisodeExtractor is available as a snap package. It is currently in the public beta, so it can only be installed from the "edge"-channel. If you run into any issues using the snap, please report them under "Issues".  
+The snap package includes all necessary dependencies, thus making the installation a lot easier.
+
+### Installation Instructions
+Just run `sudo snap install --edge rssepisodeextractor`.  
+
+### Remove Instructions
+Just run `sudo snap remove rssepisodeextractor `.
+
+#### The snap also adds an entry to the applications menu.  
 
 ## Usage:
 ### Console

@@ -110,3 +110,15 @@ venv.bak/
 
 # Ignore *.glade~
 *.glade~
+
+# Ignore snapcraft files
+build/
+dist/
+parts/
+prime/
+snap/.snapcraft/
+stage/
+*.snap
+
+# Ignore files.txt
+files.txt
